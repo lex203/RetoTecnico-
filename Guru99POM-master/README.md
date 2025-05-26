@@ -1,4 +1,4 @@
-# Proyecto de Automatización con Serenity BDD, Cucumber y POM
+# Reto tècnico de automatizaciòn
 
 Este proyecto automatiza el inicio de sesión en el sitio de pruebas [Guru99 Demo](http://demo.guru99.com/V4/index.php), utilizando **Serenity BDD**, **Cucumber**, **Selenium WebDriver** y el **patrón de diseño Page Object Model (POM)**. La arquitectura aplicada promueve la escalabilidad, la reutilización de código y una clara separación de responsabilidades.
 
@@ -22,13 +22,16 @@ project-root
 │       │   ├── pageObjects
 │       │   ├── steps
 │       │   ├── runners
-│       │   └── stepDefinitions
+│       │   ├── stepDefinitions
+│       │   ├── utils        
 │       └── resources
 │           ├── features
-│           └── drivers
+│           ├── drivers
+│           └── data        
 ├── serenity.properties
 ├── build.gradle
 └── README.md
+
 ```
 
 ## Configuraciones
@@ -57,6 +60,8 @@ serenity.test.root=net.thucydides.showcase.cucumber.junit
 4. Los **Steps** llaman a los métodos de los **Page Objects**, que contienen la lógica de interacción con la interfaz.
 5. Un **Runner** ejecuta el escenario usando Cucumber y Serenity.
 6. Serenity genera automáticamente reportes detallados de la ejecución.
+7. Los **utils** guardan funciones auxiliares para manejar datos y facilitar la automatización.
+8. Un **data** con archivos JSON con información para las pruebas.
 
 ## Explicación de Componentes
 
@@ -66,6 +71,7 @@ serenity.test.root=net.thucydides.showcase.cucumber.junit
 - **Steps**: Clases con lógica modular decoradas con `@Step`.
 - **Page Objects**: Encapsulan los elementos de la interfaz y las acciones sobre ellos.
 - **Models**: Representan entidades o estructuras de datos.
+- **Utils**: : Funciones de apoyo para manejar datos y automatizar procesos..
 
 ## Patrón de Diseño POM
 
@@ -80,6 +86,15 @@ El patrón **Page Object Model (POM)** promueve la separación entre la lógica 
 - `LoginPage.java`: Define los elementos y acciones de la pantalla de inicio de sesión.
 - `LoginSteps.java`: Orquesta las acciones requeridas para completar el flujo.
 - `LoginStepDefinition.java`: Enlaza los pasos en lenguaje natural con las acciones implementadas.
+- `Utils.java`: Contiene funciones auxiliares para manejar datos, formatear información y optimizar la automatización.
+- `Data.json`: Archivos con la información que se suministrará en la automatización, organizando los datos de prueba de manera estructurada.
+- `newCustomer.feature`: Gestiona el flujo de creación de un usuario nuevo, asegurando que el proceso se valide correctamente. 
+- `NewCustomerDefinitions.java`: Implementa la lógica que traduce los pasos en lenguaje natural del newCustomer.feature en código ejecutable. 
+- `GenerateCustomerRunner.java`: Configura la ejecución del flujo de creación de usuario usando Cucumber y Serenity. 
+- `DatCustomer.java`: Modelo de datos que representa la estructura de un cliente dentro del sistema. 
+- `NewCustomerPage.java`: Define los elementos de la interfaz y las acciones para gestionar la creación de un nuevo usuario. 
+- `NewCustomerStep.java`: Encapsula la lógica modular del proceso de creación de usuario y utiliza la anotación @Step. 
+- `JsonReaderCustomer.java`: Maneja la lectura de archivos JSON para obtener la información que se utilizará en el proceso de creación de usuario.
 
 ## Conclusión
 
