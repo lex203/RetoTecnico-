@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="New Customer" skipped="1" tests="2" time="22.78" timestamp="2025-05-23 04:39:25"><testcase name="Register of New Customer with existing data"/><testcase name="Register of New Customer with random data"><skipped/></testcase></testsuite>
