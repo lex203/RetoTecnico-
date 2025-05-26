@@ -1,0 +1,57 @@
+// Define las tareas por defecto que se ejecutan cuando lanzas 'gradle' sin argumentos.
+// Primero limpia el proyecto (clean), luego ejecuta las pruebas (test) y finalmente genera los reportes (aggregate).
+defaultTasks 'clean', 'test', 'aggregate'
+
+// Configura el classpath para el build script (las dependencias que necesita Gradle para ejecutar el build).
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.80")
+    }
+}
+
+apply plugin: 'java'                     // Plugin Java para compilar, testear y empaquetar código Java
+apply plugin: 'idea'                     // Plugin para generar configuración para IntelliJ IDEA
+apply plugin: 'net.serenity-bdd.aggregator' // Plugin para agregar y generar reportes consolidados de Serenity
+
+// Define el grupo y la versión del proyecto, usados para versionamiento y empaquetado
+group 'com.guru99'
+version '1.0-SNAPSHOT'
+
+// Define los repositorios de donde se descargan las dependencias necesarias para compilar y ejecutar el proyecto
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+// Define las dependencias del proyecto
+dependencies {
+    implementation 'junit:junit:4.13.1'  // Biblioteca para pruebas unitarias con JUnit 4
+
+    // Dependencias necesarias para automatización con Serenity y Cucumber
+    implementation 'net.serenity-bdd:serenity-junit:2.0.80'    // Integración Serenity con JUnit
+    implementation 'net.serenity-bdd:serenity-cucumber:1.9.45' // Integración Serenity con Cucumber
+    implementation 'net.serenity-bdd:serenity-core:2.0.80'     // Núcleo de Serenity (reportes, gestión de pruebas)
+    implementation 'org.slf4j:slf4j-simple:1.7.7'              // Biblioteca para logging simple con SLF4J
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.15.4'
+}
+
+// Indica que la tarea 'test' (ejecutar pruebas) debe ser seguida por la tarea 'aggregate' 
+// para generar los reportes consolidados de Serenity después de correr los tests.
+test.finalizedBy(aggregate)
+
+// Configuración personalizada para la tarea 'test' (ejecutar pruebas unitarias)
+test {
+    // Permite que Gradle continúe ejecutando todas las pruebas incluso si alguna falla,
+    // evitando que falle la tarea inmediatamente y permitiendo ver todos los errores juntos.
+    ignoreFailures = true
+}
+
+
+// Indica que Gradle debe continuar con la ejecución del resto de tareas aunque alguna falle,
+// esto ayuda en pipelines donde quieres recopilar toda la información antes de fallar.
+gradle.startParameter.continueOnFailure = true

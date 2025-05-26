@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Kevin",
+    "gender": "Male",
+    "dod": "13-11-1990",
+    "address": "123 Main St",
+    "city": "Miami",
+    "state": "Florida",
+    "pin": "400056",
+    "mobile": "9876543210",
+    "email": "Kevin14@email.com",
+    "password": "Secure123"
+
+  }
+]

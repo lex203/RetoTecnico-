@@ -1,0 +1,6 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Login to guru99 Demo","login page guru99 demo","ERROR","2025-05-23T14:17:18.6428307-05:00[America/Bogota]","0.0","13.28"
+"Generate and Register New Customer","Generate and Register a New Customer","PENDING","2025-05-23T16:31:16.0623273-05:00[America/Bogota]","0.0","12.33"
+"New Customer","Register of New Customer with existing data","SUCCESS","2025-05-23T16:39:25.6888386-05:00[America/Bogota]","0.0","13.01"
+"New Customer","Register of New Customer with random data","PENDING","2025-05-23T16:39:39.5963468-05:00[America/Bogota]","0.0","9.76"
+"New Customer","Register of New Customer","SUCCESS","2025-05-26T10:09:41.7637187-05:00[America/Bogota]","0.0","16.02"
